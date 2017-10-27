@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.client.plugin.bytedance.pluginclient"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+apply plugin: 'replugin-plugin-gradle'
+
+
+repluginPluginConfig {
+    //插件名
+    pluginName = "client"
+    //宿主app的包名
+    hostApplicationId = "com.example.bytedance.plugindemo"
+    //宿主app的启动activity
+    hostAppLauncherActivity = "com.example.bytedance.plugindemo.MainActivity"
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.qihoo360.replugin:replugin-plugin-lib:2.2.1'
+
+}
